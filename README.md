@@ -1,6 +1,6 @@
 # Graph-Coloration-Project
 
-![Enonce](enonce.png "Enoncé")
+![Enonce](./images/enonce.png "Enoncé")
 
 Note: On décrira par la suite, le graphe par la lettre G, par la variable E le nombre d'*edges* ou d'arêtes donnés par l'utilisateur pour ce graphe G, et par V le nombre de *vertices* ou sommets.
 
