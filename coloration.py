@@ -91,6 +91,7 @@ def double_coloration_optimal(G):
 def triple_coloration(G):
 	uncolored=G.nodes.copy()
 	uncolored_neighbors=[]
+	neighbors=all_neighbors(G)
 	while len(uncolored)!=0:
 		print(uncolored,uncolored_neighbors)
 		#input()
@@ -99,7 +100,7 @@ def triple_coloration(G):
 		else:
 			node=uncolored_neighbors[0]
 		print("node",node)
-		node_neighbors=G.neighbors(node)
+		node_neighbors=node_neighbors=neighbors[node]
 		node_neighbors_color=[]
 
 		for neighbor in node_neighbors:
