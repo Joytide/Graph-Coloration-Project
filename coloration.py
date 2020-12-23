@@ -1,3 +1,4 @@
+#Ex1
 def double_coloration(G):
 	uncolored=G.nodes.copy()
 	uncolored_neighbors=[]
@@ -34,7 +35,7 @@ def double_coloration(G):
 
 
 
-
+#Ex1.2
 def all_neighbors(G): #O(E)
 	neighbors={}
 	for (node1,node2) in G.edges: # run E times
@@ -87,7 +88,7 @@ def double_coloration_optimal(G):
 
 
 
-
+#Ex2
 def triple_coloration(G):
 	uncolored=G.nodes.copy()
 	uncolored_neighbors=[]
@@ -123,3 +124,9 @@ def triple_coloration(G):
 		if node in uncolored_neighbors:
 			uncolored_neighbors.remove(node)
 	return True
+
+
+
+#Ex3
+def check_triple_coloration(G):
+	return (1<=len(G.get_colors())<=3) and None not in G.get_colors()

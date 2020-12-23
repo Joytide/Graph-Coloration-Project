@@ -37,6 +37,14 @@ class Graph():
 	def setnode_color(self,node,color):
 		self.color_map[node]=color
 
+	def get_colors(self):
+		colors=[]
+		for node in self.nodes:
+			if node not in self.color_map:
+				colors.append(None)
+			else:
+				colors.append(self.color_map[node])
+		return list(set(colors))
 
 	
 
