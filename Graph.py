@@ -13,15 +13,17 @@ class Graph():
 	def show(self):
 		for node in self.nodes:
 			if node not in self.color_map.keys():
-				print("Not all nodes were given a color")
-				exit()
+				print("Not displaying graph since not all nodes were given a color")
+				#return None
 		import networkx as nx 
 		import matplotlib.pyplot as plt
 		G = nx.Graph()
 		G.add_edges_from(self.edges)
-		values = [self.color_map.get(node,0) for node in self.nodes]
-		print(values)
-		print(self.nodes)
+		#self.color_map=dict(sorted(self.color_map.items()))
+		#print(self.color_map,self.nodes)
+		values = [self.color_map.get(node,0) for node in G.nodes]
+		#print(values)
+		print(G.nodes,self.nodes)
 		nx.draw(G, cmap=plt.get_cmap('viridis'),node_color=values, with_labels=True, font_color='white')
 		plt.show()
 
