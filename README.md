@@ -20,6 +20,12 @@
 
 
 
+
+
+
+
+
+
 ## Exercice 2
 
 - Le programme reprend la même base que celui de 2-coloration et rajoute juste un cas dans le *if* final, donc la complexité du programme est la même, c'est-à-dire O(V+E).

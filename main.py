@@ -5,7 +5,7 @@ from string import ascii_uppercase as alphabet
 
 def graph_generator(n,p):
 	from networkx.generators.random_graphs import fast_gnp_random_graph
-	return Graph( fast_gnp_random_graph(n, p).edges)
+	return Graph(fast_gnp_random_graph(n,p).edges)
 
 g=graph_generator(35,0.1)
 triple_coloration(g)
