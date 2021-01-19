@@ -1,15 +1,18 @@
 from coloration import *
 from Graph import Graph
-
+import time
 from string import ascii_uppercase as alphabet
 
 def graph_generator(n,p):
 	from networkx.generators.random_graphs import fast_gnp_random_graph
 	return Graph(fast_gnp_random_graph(n,p).edges)
 
-g=graph_generator(35,0.1)
-triple_coloration(g)
-g.show()
+G=graph_generator(3,0.2)
+G.show()
+input()
+triple_coloration_optimisation(G)
+G.show()
+
 
 """
 #Graph colorable avec 2 couleurs
