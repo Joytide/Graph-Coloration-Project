@@ -7,7 +7,7 @@ def graph_generator(n,p):
 	from networkx.generators.random_graphs import fast_gnp_random_graph
 	return Graph(fast_gnp_random_graph(n,p).edges)
 
-G=graph_generator(3,0.2)
+G=graph_generator(20,0.1)
 G.show()
 input()
 triple_coloration_optimisation(G)

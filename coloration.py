@@ -1,3 +1,5 @@
+import copy
+
 #Ex1
 def double_coloration(G):
 	uncolored=G.nodes.copy()
@@ -156,11 +158,12 @@ def triple_coloration_optimisation(G):
 
 def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,neighbors=None):
 	print("Launching function with uncolored=",uncolored,"\nuncolored_neighbors=",uncolored_neighbors,"\nneighbors=",neighbors)
-	print("colormap=",G.color_map)
-	if not uncolored: #Initialisation
+	print("colormap=",G.color_map,"\n")
+	if uncolored==None: #Initialisation
 		uncolored=G.nodes.copy()
 		uncolored_neighbors=[]
 		neighbors=all_neighbors(G)
+
 	if len(uncolored)==0:
 		#G.show()
 		#input()
@@ -187,9 +190,9 @@ def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,nei
 		#input()
 		return False
 	elif len(node_neighbors_color)==1:
+		H=G._copy()
 		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
 		print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
-		H=G._copy()
 		print("Colored",node,"in",[x for x in H.three_color if x not in node_neighbors_color][1])
 		H.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][1])
 		uncolored.remove(node)
@@ -198,9 +201,10 @@ def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,nei
 		#G.show()
 		#H.show()
 		#input()
-		return triple_coloration_optimisation(G,uncolored,uncolored_neighbors,neighbors) or triple_coloration_optimisation(H,uncolored,uncolored_neighbors,neighbors)
+		return triple_coloration_optimisation(G,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors) or triple_coloration_optimisation(H,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors)
 	else:
 		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
+		print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
 		uncolored.remove(node)
 		if node in uncolored_neighbors:
 			uncolored_neighbors.remove(node)

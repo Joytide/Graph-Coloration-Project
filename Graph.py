@@ -18,8 +18,9 @@ class Graph():
 			if node not in self.color_map.keys():
 				n+=1
 				
-				#return None
-		print("Not displaying graph since "+str(n)+" nodes were not given a color")
+		if n!=0:	
+			print("Not displaying graph since "+str(n)+" nodes were not given a color")
+			return False
 		import networkx as nx 
 		import matplotlib.pyplot as plt
 		G = nx.Graph()
