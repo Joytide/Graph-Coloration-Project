@@ -9,7 +9,6 @@ def graph_generator(n,p):
 
 G=graph_generator(20,0.1)
 G.show()
-input()
 triple_coloration_optimisation(G)
 G.show()
 

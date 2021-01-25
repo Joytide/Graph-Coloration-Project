@@ -51,49 +51,50 @@ def neighbors(self,node): #4*E+1
 
 * La complexité en temps est de au pire 2+25\*V+8V²+4*E, donnant une complexité de O(V²+E) dans le pire des cas, et en moyenne O(V+E)
 
+
+
+
+
 ```python
 def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,neighbors=None):
-	if not uncolored: #Initialisation
-		uncolored=G.nodes.copy()
-		uncolored_neighbors=[]
-		neighbors=all_neighbors(G)
-	if len(uncolored)==0:
-		G.show()
+	if uncolored==None: 			# 1 (Happens 1 time)
+		uncolored=G.nodes.copy() 	# V
+		uncolored_neighbors=[] 		# 1
+		neighbors=all_neighbors(G) 	# E
 
-		return True	
-	if len(uncolored_neighbors)==0:
-		node=uncolored[0]
+	if len(uncolored)==0: 			# 2
+		return True					# 1
+	if len(uncolored_neighbors)==0:	# 2
+		node=uncolored[0]			# 1
 	else:
-		node=uncolored_neighbors[0]
-	#print("node",node)
-	node_neighbors=node_neighbors=neighbors[node]
-	node_neighbors_color=[]
+		node=uncolored_neighbors[0]	# 1
+	node_neighbors=neighbors[node] 	# 1
+	node_neighbors_color=[]			# 1
 
-	for neighbor in node_neighbors:
-		if neighbor in G.color_map:
-			node_neighbors_color.append(G.color_map[neighbor])
+	for neighbor in node_neighbors:	# (V-1)
+		if neighbor in G.color_map: # 3
+			node_neighbors_color.append(G.color_map[neighbor]) 	# 1
 		else:
-			uncolored_neighbors.append(neighbor)
-	uncolored_neighbors=list(set(uncolored_neighbors))
-	node_neighbors_color=list(set(node_neighbors_color))
-
-	if len(node_neighbors_color)>=3:
-		print("node",node,"had too much colors touching it",node_neighbors_color)
-		return False
-	elif len(node_neighbors_color)==2:
-		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
-		uncolored.remove(node)
-		if node in uncolored_neighbors:
-			uncolored_neighbors.remove(node)
-		return triple_coloration_optimisation(G,uncolored,uncolored_neighbors,neighbors)
+			uncolored_neighbors.append(neighbor)				# 1
+	uncolored_neighbors=list(set(uncolored_neighbors))			# 3
+	node_neighbors_color=list(set(node_neighbors_color))		# 3
+	
+	if len(node_neighbors_color)>=3:	# 2		
+		return False					# 1
+	elif len(node_neighbors_color)==1:	# 2
+		H=G._copy()						# V
+		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0]) 		# 7
+		H.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][1])		# 7
+		uncolored.remove(node)																		# (V-1)
+		if node in uncolored_neighbors:																# (V-1)
+			uncolored_neighbors.remove(node) 														# 1
+		return triple_coloration_optimisation(G,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors) or triple_coloration_optimisation(H,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors) #2*V times with last occurence complexity = O(V)
 	else:
-		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
-		H=G.copy()
-		H.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][1])
-		uncolored.remove(node)
-		if node in uncolored_neighbors:
-			uncolored_neighbors.remove(node)
-		return triple_coloration_optimisation(G,uncolored,uncolored_neighbors,neighbors) or triple_coloration_optimisation(H,uncolored,uncolored_neighbors,neighbors)
-		#print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
+		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])		# 7
+		uncolored.remove(node)																		# (V-1)
+		if node in uncolored_neighbors:																# (V-1)
+			uncolored_neighbors.remove(node)														# (V-1)
+		return triple_coloration_optimisation(G,uncolored,uncolored_neighbors,neighbors)			# V times
 ```
 
+La complexité calculée est donc de V*2^V+E+O(V)

@@ -122,43 +122,10 @@ def triple_coloration(G):
 	return True
 
 
-def triple_coloration_optimisation(G):
-	uncolored=G.nodes.copy()
-	uncolored_neighbors=[]
-	neighbors=all_neighbors(G)
-	while len(uncolored)!=0:
-		#print(uncolored,uncolored_neighbors)
-		if len(uncolored_neighbors)==0:
-			node=uncolored[0]
-		else:
-			node=uncolored_neighbors[0]
-		#print("node",node)
-		node_neighbors=node_neighbors=neighbors[node]
-		node_neighbors_color=[]
-
-		for neighbor in node_neighbors:
-			if neighbor in G.color_map:
-				node_neighbors_color.append(G.color_map[neighbor])
-			else:
-				uncolored_neighbors.append(neighbor)
-		uncolored_neighbors=list(set(uncolored_neighbors))
-		node_neighbors_color=list(set(node_neighbors_color)) #Avoid duplicates
-		#print(node_neighbors,node_neighbors_color)
-		if len(node_neighbors_color)>=3:
-			print("node",node,"had too much colors touching it",node_neighbors_color)
-			return False
-		else:
-			G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
-			#print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
-
-		uncolored.remove(node)
-		if node in uncolored_neighbors:
-			uncolored_neighbors.remove(node)
-	return True
 
 def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,neighbors=None):
-	print("Launching function with uncolored=",uncolored,"\nuncolored_neighbors=",uncolored_neighbors,"\nneighbors=",neighbors)
-	print("colormap=",G.color_map,"\n")
+	#print("Launching function with uncolored=",uncolored,"\nuncolored_neighbors=",uncolored_neighbors,"\nneighbors=",neighbors)
+	#print("colormap=",G.color_map,"\n")
 	if uncolored==None: #Initialisation
 		uncolored=G.nodes.copy()
 		uncolored_neighbors=[]
@@ -185,15 +152,15 @@ def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,nei
 	node_neighbors_color=list(set(node_neighbors_color))
 
 	if len(node_neighbors_color)>=3:
-		print("node",node,"had too much colors touching it",node_neighbors_color)
+		#print("node",node,"had too much colors touching it",node_neighbors_color)
 		#G.show()
 		#input()
 		return False
 	elif len(node_neighbors_color)==1:
 		H=G._copy()
 		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
-		print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
-		print("Colored",node,"in",[x for x in H.three_color if x not in node_neighbors_color][1])
+		#print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
+		#print("Colored",node,"in",[x for x in H.three_color if x not in node_neighbors_color][1])
 		H.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][1])
 		uncolored.remove(node)
 		if node in uncolored_neighbors:
@@ -204,7 +171,7 @@ def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,nei
 		return triple_coloration_optimisation(G,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors) or triple_coloration_optimisation(H,copy.deepcopy(uncolored),copy.deepcopy(uncolored_neighbors),neighbors)
 	else:
 		G.setnode_color(node,[x for x in G.three_color if x not in node_neighbors_color][0])
-		print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
+		#print("Colored",node,"in",[x for x in G.three_color if x not in node_neighbors_color][0])
 		uncolored.remove(node)
 		if node in uncolored_neighbors:
 			uncolored_neighbors.remove(node)
@@ -212,7 +179,7 @@ def triple_coloration_optimisation(G,uncolored=None,uncolored_neighbors=None,nei
 		#input()
 		return triple_coloration_optimisation(G,uncolored,uncolored_neighbors,neighbors)
 
-	
+
 
 
 
