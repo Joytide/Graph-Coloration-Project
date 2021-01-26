@@ -12,15 +12,16 @@ class Graph():
 		self.two_color=[0,1]
 		self.three_color=[0,0.5,1]
 
-	def show(self):
+	def show(self,force = False):
 		n=0
+        
 		for node in self.nodes:
 			if node not in self.color_map.keys():
 				n+=1
 				
-		if n!=0:	
-			print("Not displaying graph since "+str(n)+" nodes were not given a color")
-			return False
+		if n!=0 and not force:	
+ 			print("Not displaying graph since "+str(n)+" nodes were not given a color")
+ 			return False
 		import networkx as nx 
 		import matplotlib.pyplot as plt
 		G = nx.Graph()
@@ -32,6 +33,9 @@ class Graph():
 		print(G.nodes,self.nodes,self.color_map)
 		nx.draw(G, cmap=plt.get_cmap('viridis'),node_color=values, with_labels=True, font_color='white')
 		plt.show()
+        
+        
+
 
 	def neighbors(self,node): #4E+1
 		neighbors=[]
@@ -44,6 +48,7 @@ class Graph():
 
 	def setnode_color(self,node,color):
 		self.color_map[node]=color
+    
 
 	def get_colors(self):
 		colors=[]
@@ -53,11 +58,15 @@ class Graph():
 			else:
 				colors.append(self.color_map[node])
 		return list(set(colors))
+    
 	def _copy(self):
 		H=Graph(copy.deepcopy(self.edges))
 		H.color_map=copy.deepcopy(self.color_map)
 		return H
-	
+    
+
+    
+    
 
 
 
