@@ -20,11 +20,11 @@
 
   Une autre possibilité d'optimisation pour réduire les 25\*V de la complexité, nous pourrions passer nos listes python en set, un objet beaucoup moins coûteux en temps car n'acceptant pas de doublons. eg: ```if node in uncolored_neighbors:``` Se réduirait à O(1) et non O(V)
 
-![Figure](./images/figure_1.png "Figure")
+![Figure](./images/Figure_1.png "Figure")
 
 - En utilisant la génération de graphe de ```networkx.generators.random_graphs.erdos_renyi_graph``` , basé sur la génération de graphe (simple, non-orienté mais aussi non connexe) du modèle Erdos-Rényi (https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93R%C3%A9nyi_model), on remarque que plus on augmente le nombre p (probabilité de création d'une arête entre 2 nodes), plus il est difficile de coloré le graphe, car il se retrouver très vite dans une position ou 3 sommets sont conjoints.
 
-![Figure](./images/figure_2.png "Figure")
+![Figure](./images/Figure_2.png "Figure")
 
 ## Exercice 2
 
@@ -36,21 +36,21 @@
 
   Nous optenons finalement un algorithme permettant la 3-coloration relativement rapide pour des graphe de l'ordre de la dizaine de nodes: (Ici en n=25 et p=0.1)
 
-![plot 2 -25sans couleur.png](./images/plot 2 -25sans couleur.png "plot 2 -25sans couleur.png")
+![plot 2 -25sans couleur.png]("./images/plot 2 -25sans couleur.png" "plot 2 -25sans couleur.png")
 
 
 
-![plot 2 -25couleur.png](./images/plot 2 -25couleur.png "plot 2 -25couleur.png")
+![plot 2 -25couleur.png]("./images/plot 2 -25couleur.png" "plot 2 -25couleur.png")
 
 
 
 - En utilisant la génération de graphe de ```networkx.generators.random_graphs.erdos_renyi_graph``` , on retrouve le même dilemne: plus le nombre de points augmente ou la probabilité de création d'une arête augmente, plus il est difficile de 3-coloré le graphe, car on risque de retrouver un patterne avec 4 sommets conjoints comme suit:
 
-  ![Figure](./images/figure_4.png "Figure")
+  ![Figure](./images/Figure_4.png "Figure")
 
   On trouve donc des graphes rapidement impossible à 3-colorer:
 
-  ![plot 3 _40 sans couleur non fonctionnel.png](./images/plot 3 _40 sans couleur non fonctionnel.png "plot 3 _40 sans couleur non fonctionnel.png")
+  ![plot 3 _40 sans couleur non fonctionnel.png]("./images/plot 3 _40 sans couleur non fonctionnel.png" "plot 3 _40 sans couleur non fonctionnel.png")
 
 # Calcul de complexité
 
