@@ -34,7 +34,8 @@ class Graph():
 		nx.draw(G, cmap=plt.get_cmap('viridis'),node_color=values, with_labels=True, font_color='white')
 		plt.show()
         
-        
+    def funk(self):
+        pass
 
 
 	def neighbors(self,node): #4E+1
