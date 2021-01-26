@@ -50,7 +50,7 @@
 
   On trouve donc des graphes rapidement impossible à 3-colorer:
 
-  ![plot_40.png](./images/plot_40.png" "plot 3 _40 sans couleur non fonctionnel")
+  ![plot_40.png](./images/plot_40.png "plot 3 _40 sans couleur non fonctionnel")
 
 # Calcul de complexité
 
