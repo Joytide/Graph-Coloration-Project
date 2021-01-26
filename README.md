@@ -36,11 +36,11 @@
 
   Nous optenons finalement un algorithme permettant la 3-coloration relativement rapide pour des graphe de l'ordre de la dizaine de nodes: (Ici en n=25 et p=0.1)
 
-![plot 2 -25sans couleur.png]("./images/plot 2 -25sans couleur.png" "plot 2 -25sans couleur.png")
+![plot_25](./images/plot_25.png "plot_25")
 
 
 
-![plot 2 -25couleur.png]("./images/plot 2 -25couleur.png" "plot 2 -25couleur.png")
+![plot_25-2](./images/plot_25-2.png "plot_25-2")
 
 
 
@@ -50,7 +50,7 @@
 
   On trouve donc des graphes rapidement impossible à 3-colorer:
 
-  ![plot 3 _40 sans couleur non fonctionnel.png]("./images/plot 3 _40 sans couleur non fonctionnel.png" "plot 3 _40 sans couleur non fonctionnel.png")
+  ![plot_40.png](./images/plot_40.png" "plot 3 _40 sans couleur non fonctionnel")
 
 # Calcul de complexité
 
